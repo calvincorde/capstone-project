@@ -8,6 +8,7 @@ import MoodEntry from "./MoodEntry"
 import TagsEntry from "./TagsEntry"
 import JournalEntry from "./JournalEntry"
 
+
 export default function MainEntry() {
   return (
     <div>

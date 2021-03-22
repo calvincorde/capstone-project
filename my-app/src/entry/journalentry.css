@@ -1,0 +1,7 @@
+
+.textbox {
+    min-width: 400px;
+    min-height: 200px;
+    border-radius: 20px;
+    background-color: lightgrey;
+}
