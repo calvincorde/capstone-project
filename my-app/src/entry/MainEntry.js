@@ -15,7 +15,7 @@ import MoodEntry4 from "./Mood/MoodEntry4"
 
 
 export default function MainEntry() {
-  return (
+  return ( 
     <div>
       <h1>This is Main Entry</h1>
       <Switch>
