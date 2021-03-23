@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-// import saveToLocal from "./saveToLocal"
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid'
 
@@ -21,7 +20,7 @@ export default class JournalEntry extends Component  {
 
   handleFormSubmit = () => {
     const { headline, entry } = this.state;
-    localStorage.setItem( uuidv4(), JSON.stringify(this.state))
+    localStorage.setItem( 'JournalEntry' + ' ' + uuidv4(), JSON.stringify(this.state))
   };
     render() {
       return (
