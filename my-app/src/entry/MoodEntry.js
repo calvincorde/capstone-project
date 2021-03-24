@@ -14,7 +14,7 @@ export default function MoodEntry() {
     <div>
       <h2>This is Mood Entry</h2> 
       <Switch>
-        <Route path="/entry/MainEntry" component={MoodEntry1} />
+        <Route path="/" component={MoodEntry1} />
         <Route path="/entry/Mood/MoodEntry2" component={MoodEntry2} />
         <Route path="/entry/Mood/MoodEntry3" component={MoodEntry3} />
         <Route path="/entry/Mood/MoodEntry4" component={MoodEntry4} />

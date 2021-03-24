@@ -34,9 +34,11 @@ export default class MoodEntry2 extends Component {
             value={this.state.user}
             onChange={this.handleChange}
             />
-            <button type="submit">Submit</button>
-          <Link to="/entry/TagsEntry">
-              <button>Continue</button>
+          <Link to="/entry/Mood/MoodEntry3">
+             <button
+              type="submit"
+              onClick={this.handleFormSubmit}
+              >Continue</button>
             </Link>
         </form>
       )

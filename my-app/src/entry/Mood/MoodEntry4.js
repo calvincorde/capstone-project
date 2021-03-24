@@ -24,7 +24,7 @@ export default class MoodEntry4 extends Component {
     render() {
       return (
         <form onSubmit={this.handleFormSubmit}>
-          <h3>This is Mood Entry 2</h3>
+          <h3>This is Mood Entry 4</h3>
             <input 
             type="range" 
             id="mood" 
@@ -34,9 +34,11 @@ export default class MoodEntry4 extends Component {
             value={this.state.user}
             onChange={this.handleChange}
             />
-            <button type="submit">Submit</button>
           <Link to="/entry/TagsEntry">
-              <button>Continue</button>
+              <button
+              type="submit"
+              onClick={this.handleFormSubmit}
+              >Continue</button>
             </Link>
         </form>
       )
