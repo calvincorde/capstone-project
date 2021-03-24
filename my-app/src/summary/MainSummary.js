@@ -16,7 +16,7 @@ export default function MainSummary() {
 
   return (
     <div>
-      <h1>This is Main Summary</h1>
+      <h1 className="master-headline">This is Main Summary</h1>
       <MoodSummary />
       <TagsSummary />
       <JournalSummary />

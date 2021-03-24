@@ -6,7 +6,7 @@ export default function TagsSummary() {
 
     return (
       <div>
-        <h2>This is Tags Summary</h2>
+        <h2 className="master-headline">This is Tags Summary</h2>
         <p className="myTags">Tag1</p>
         <p className="myTags">Tag2</p>
         <p className="myTags">Tag3</p>

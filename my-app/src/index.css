@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'DMSerifDisplay-Regular';
+  src: local(DMSerifDisplay-Regular)
+}
+
+@font-face {
+  font-family: 'Roboto-Light.ttf';
+  src: local(Roboto-Light)
+}
+
+@font-face {
+  font-family: 'Roboto-Bold.ttf';
+  src: local(Roboto-Bold)
+}
+
+.master-headline {
+  font-family: "DMSerifDisplay-Regular";
+}
+
+.master-text-headline {
+  font-family: "Roboto-Bold";
+}
+
+.master-text-text {
+  font-family: "Roboto-Light";
+}
