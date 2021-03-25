@@ -43,10 +43,11 @@ export default class JournalEntry extends Component  {
               value={this.state.user}
               onChange={this.handleChange}
               />
-              <button type="submit">Submit</button>
             <br></br>
             <Link to="/summary/MainSummary">
-              <button>Finish</button>
+              <button
+               onClick={this.handleFormSubmit}
+               >continue</button>
             </Link>
           </form>
         </div>

@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid'
-import './MoodSlider.css'
-import './MoodEntry.css'
+import './MoodEntry2.css'
 
 export default class MoodEntry1 extends Component {
   
@@ -19,28 +18,21 @@ export default class MoodEntry1 extends Component {
 
   handleFormSubmit = () => {
     const { moodRating } = this.state;
-    localStorage.setItem( 'moodRating1' + ' ' + uuidv4(), JSON.stringify(this.state))
+    localStorage.setItem( 'moodRating2' + ' ' + uuidv4(), JSON.stringify(this.state))
   };
   
   
     render() {
       return (
-          <form onSubmit={this.handleFormSubmit}>
+          <form onSubmit={this.handleFormSubmit} className="bg-color">
 
             <div className="grid">
+
               <div className="grid-text">
-                <h2 className="master-headline">This is Mood Entry 1</h2>
-                <p className="master-text-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr?</p>
-                <Link to="/entry/Mood/MoodEntry2">
-                    <button
-                    type="submit"
-                    onClick={this.handleFormSubmit}
-                    className="master-text-text"
-                    >continue</button>
-                </Link>
+                <h2 className="master-headline mood-h2">This is Mood Entry 1</h2>
               </div>
 
-              <div className="bg-color">
+              <div className="">
                 <input 
                 type="range" 
                 id="mood" 
@@ -51,6 +43,16 @@ export default class MoodEntry1 extends Component {
                 value={this.state.user}
                 onChange={this.handleChange}
                 />
+              </div>
+
+              <div>
+                <Link to="/entry/Mood/MoodEntry2">
+                      <button
+                      type="submit"
+                      onClick={this.handleFormSubmit}
+                      className="master-text-text mood-button"
+                      >continue</button>
+                </Link>
               </div>
 
             </div>

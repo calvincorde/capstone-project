@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid'
+import './MoodEntry2.css'
 
 export default class MoodEntry4 extends Component {
   
@@ -17,30 +18,46 @@ export default class MoodEntry4 extends Component {
 
   handleFormSubmit = () => {
     const { moodRating } = this.state;
-    localStorage.setItem( 'MoodEntry4' + ' ' + uuidv4(), JSON.stringify(this.state))
+    localStorage.setItem( 'moodRating2' + ' ' + uuidv4(), JSON.stringify(this.state))
   };
   
   
     render() {
       return (
-        <form onSubmit={this.handleFormSubmit}>
-          <h3>This is Mood Entry 4</h3>
-            <input 
-            type="range" 
-            id="mood" 
-            name="moodslider" 
-            mind="1" 
-            max="10"
-            value={this.state.user}
-            onChange={this.handleChange}
-            />
-          <Link to="/entry/TagsEntry">
-              <button
-              type="submit"
-              onClick={this.handleFormSubmit}
-              >Continue</button>
-            </Link>
-        </form>
+          <form onSubmit={this.handleFormSubmit} className="bg-color">
+
+            <div className="grid">
+
+              <div className="grid-text">
+                <h2 className="master-headline mood-h2">This is Mood Entry 4</h2>
+              </div>
+
+              <div className="">
+                <input 
+                type="range" 
+                id="mood" 
+                name="moodslider" 
+                mind="1" 
+                max="1000"
+                className="rangeslider"
+                value={this.state.user}
+                onChange={this.handleChange}
+                />
+              </div>
+
+              <div>
+                <Link to="/entry/TagsEntry">
+                      <button
+                      type="submit"
+                      onClick={this.handleFormSubmit}
+                      className="master-text-text mood-button"
+                      >continue</button>
+                </Link>
+              </div>
+
+            </div>
+
+          </form>
       )
     }
 }
