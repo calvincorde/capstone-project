@@ -38,3 +38,12 @@ code {
 .master-text-text {
   font-family: "Roboto-Light";
 }
+
+button {
+  border: solid 1px black;
+  border-radius: 10px;
+  color: black;
+  background: none;
+  transform: scale(1.2);
+  margin: 0px 10px;
+}
