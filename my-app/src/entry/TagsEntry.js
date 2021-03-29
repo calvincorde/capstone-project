@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import { v4 as uuidv4 } from 'uuid'
+
+import saveToLocal from "./saveToLocal"
 import './TagsEntry.css'
 
 
 
 export default function TagsEntry() {
 
-  const [tags, setTags] = React.useState(["Tag1", "Tag2"]);
+  const [tags, setTags] = React.useState([]);
   const removeTag =indextoRemove => {
     setTags(tags.filter((_, index) => index !== indextoRemove));
   };
@@ -17,8 +20,15 @@ export default function TagsEntry() {
     }
   };
 
+  const handleFormSubmit = () => {
+    const { myTags } = tags;
+    localStorage.setItem( 'myTags' + ' ' + uuidv4(), JSON.stringify(tags))
+  };
+
+
   return (
     <div>
+
       <div className="tags-input">
         <ul>
           {tags.map((tag, index) => (
@@ -34,15 +44,20 @@ export default function TagsEntry() {
         <input 
           type="text" 
           placeholder="Enter your Tag here" 
-          onKeyUp={e => (e.key === "Enter" ? addTags(e) : null)} />
+          onKeyUp={e => (e.key === "Enter" ? addTags(e) : null)}
+        />
       </div>
-      <Link to="/entry/JournalEntry">
-            <button
-            // type="submit"
-            // onClick={this.handleFormSubmit}
-            className="master-text-text"
-            >continue</button>
-      </Link>
+
+
+      <div>
+        <Link to="/entry/JournalEntry">
+          <button
+          onClick={handleFormSubmit}
+          className="master-text-text"
+          >continue</button>
+        </Link>
+      </div>
+
     </div>
   )
 }
