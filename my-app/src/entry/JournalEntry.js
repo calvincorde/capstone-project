@@ -24,11 +24,11 @@ export default class JournalEntry extends Component  {
   };
     render() {
       return (
-        <div>
-          <form onSubmit={this.handleFormSubmit}>
-            <h2>This is Journal Entry</h2>
+        <div className="">
+          <h2 className="master-headline journal-headline">This is Journal Entry</h2>
+          <form onSubmit={this.handleFormSubmit} className="form-grid">
             <input 
-              className="textbox" 
+              className="textbox master-text-headline" 
               type="text" 
               name="headline"
               placeholder="Headline"
@@ -36,7 +36,7 @@ export default class JournalEntry extends Component  {
               onChange={this.handleChange}
               />
             <input 
-              className="textbox" 
+              className="textbox master-text-text" 
               type="text" 
               name="entry"
               placeholder="Write a new entry"

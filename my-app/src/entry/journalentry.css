@@ -1,7 +1,37 @@
 
+
+.form-grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+
 .textbox {
-    min-width: 400px;
-    min-height: 200px;
+    /* min-width: 400px;
+    min-height: 200px; */
     border-radius: 20px;
-    background-color: lightgrey;
+    background: none;
+    color: white;
+    padding: 0rem 4rem;
+}
+
+
+.journal-headline {
+	color: white;
+    font-size: 5rem;   
+    line-height: 5rem;
+    text-align: center;
+}
+
+.bg-color {
+    background: linear-gradient(to top, #02ADF5, #FF951C);
+}
+
+input {
+    border-style: none;
+    border: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
 }

@@ -6,7 +6,7 @@ import './MoodEntry2.css'
 export default class MoodEntry4 extends Component {
   
   state = {
-    moodslider: ''
+    moodslider4: ''
   };
 
    handleChange = (event) => {
@@ -18,7 +18,7 @@ export default class MoodEntry4 extends Component {
 
   handleFormSubmit = () => {
     const { moodRating } = this.state;
-    localStorage.setItem( 'moodRating2' + ' ' + uuidv4(), JSON.stringify(this.state))
+    localStorage.setItem( 'moodRating4' + ' ' + uuidv4(), JSON.stringify(this.state))
   };
   
   
@@ -29,14 +29,14 @@ export default class MoodEntry4 extends Component {
             <div className="grid">
 
               <div className="grid-text">
-                <h2 className="master-headline mood-h2">This is Mood Entry 4</h2>
+                <h2 className="master-headline mood-h2">how exited <br></br> are you <br></br> for today? </h2>
               </div>
 
               <div className="">
                 <input 
                 type="range" 
                 id="mood" 
-                name="moodslider" 
+                name="moodslider4" 
                 mind="1" 
                 max="1000"
                 className="rangeslider"

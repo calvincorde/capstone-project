@@ -27,10 +27,11 @@ export default function TagsEntry() {
 
 
   return (
-    <div>
+    <div className="tag-grid">
 
       <div className="tags-input">
-        <ul>
+        <h2 className="master-headline tags-headline">what are the first things that came to your mind?</h2>
+        <ul className="ul-grid">
           {tags.map((tag, index) => (
               <li key={index} className="tag tags">
               <span className="tag-title">{tag}</span>
@@ -42,6 +43,7 @@ export default function TagsEntry() {
           ))}
         </ul>
         <input 
+          className="master-text-text"
           type="text" 
           placeholder="Enter your Tag here" 
           onKeyUp={e => (e.key === "Enter" ? addTags(e) : null)}
@@ -53,7 +55,7 @@ export default function TagsEntry() {
         <Link to="/entry/JournalEntry">
           <button
           onClick={handleFormSubmit}
-          className="master-text-text"
+          className="master-text-text button"
           >continue</button>
         </Link>
       </div>
