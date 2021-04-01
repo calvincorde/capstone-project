@@ -13,7 +13,13 @@ export default class MoodEntry2 extends Component {
     const input = event.target;
     const value = input.value;
 
-    this.setState({ [input.name]: value });
+    const myDate = new Date();
+    const myDay = myDate.getDay()
+
+    const theDays = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const weekday = theDays[myDay]
+
+    this.setState({ [input.name]: value, weekday });
   };
 
   handleFormSubmit = () => {
