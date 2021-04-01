@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import './MoodEntry2.css'
 
 export default class MoodEntry1 extends Component {
-  
+ 
   state = {
     moodslider1: ''
   };
@@ -13,7 +13,13 @@ export default class MoodEntry1 extends Component {
     const input = event.target;
     const value = input.value;
 
-    this.setState({ [input.name]: value });
+    const myDate = new Date();
+    const myDay = myDate.getDay()
+
+    const theDays = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const weekday = theDays[myDay]
+
+    this.setState({ [input.name]: value, weekday });
   };
 
   handleFormSubmit = () => {
