@@ -14,13 +14,15 @@ import MainSummary from "./summary/MainSummary"
 
 
 
+
+
 function App() {
   return (
     <div className="App">
       <Navigation />
         <Switch>
           <Route path="/entry" component={MainEntry} />
-          <Route path="/summary/MainSummary" component={MainSummary} />
+          <Route path="/summary" component={MainSummary} />
           <Route exact path="/" component={MainPage} />
         </Switch>
     </div>

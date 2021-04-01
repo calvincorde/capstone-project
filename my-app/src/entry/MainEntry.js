@@ -1,4 +1,3 @@
-
 import { 
   Route, 
   Switch
@@ -24,7 +23,6 @@ export default function MainEntry() {
         <Route path="/entry/Mood/MoodEntry4" component={MoodEntry4} />
         <Route path="/entry/TagsEntry" component={TagsEntry} />
         <Route path="/entry/JournalEntry" component={JournalEntry} />
-
       </Switch>
   </div>
     
