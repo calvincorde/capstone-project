@@ -30,7 +30,7 @@ export default class MoodEntry2 extends Component {
   
     render() {
       return (
-          <form onSubmit={this.handleFormSubmit} className="bg-color">
+          <form onSubmit={this.handleFormSubmit}>
 
             <div className="grid">
 

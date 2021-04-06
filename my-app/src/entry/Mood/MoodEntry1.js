@@ -30,7 +30,7 @@ export default class MoodEntry1 extends Component {
   
     render() {
       return (
-          <form onSubmit={this.handleFormSubmit} className="">
+          <form onSubmit={this.handleFormSubmit}>
 
             <div className="grid">
 

@@ -17,7 +17,6 @@
 	grid-template-rows: 10fr 1fr;
 	grid-template-columns: 1fr;
 	justify-items: center;
-	background: linear-gradient(to top, #02ADF5, #FF951C);
 	padding: 5rem;;
 }
 
