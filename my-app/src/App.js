@@ -1,9 +1,9 @@
-import './App.css';
-
 import { 
   Route, 
   Switch,
 } from "react-router-dom";
+
+import './App.css';
 
 import MainPage from "./MainPage"
 import Navigation from './Navigation';

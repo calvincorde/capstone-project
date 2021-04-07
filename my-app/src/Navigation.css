@@ -1,0 +1,15 @@
+
+.stickyNav {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 20%;
+}
+
+.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+}

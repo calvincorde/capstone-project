@@ -38,21 +38,25 @@ const MoodSummary = () => {
                 label: 'Mood',
                 data: [32, 87, 45, 76, 21, 12, 89],
                 backgroundColor: ['rgba(87, 156, 247, 0.6)'],
+                pointRadius: [0]
               },
               {
                 label: 'Sleep',
                 data: [42,  34,  50,  86,  30,  10,  27],
                 backgroundColor: ['rgba(74, 212, 103, 0.6)'],
+                pointRadius: [0]
               },
               {
                 label: 'Arise',
                 data: [92,  90,  38,  2,  54,  91,  10],
                 backgroundColor: ['rgba(235, 217, 94, 0.6)'],
+                pointRadius: [0]
               },
               {
                 label: 'Excitement',
                 data: [33,  9,  86,  63,  45,  50,  39],
                 backgroundColor: ['rgba(212, 112, 74, 0.6)'],
+                pointRadius: [0]
               }
 
             ]

@@ -1,0 +1,12 @@
+.grid-container {
+    display: grid;
+    grid-template-rows: 6fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
+    justify-items: center;
+    margin: 0px;
+}
+
+.grid > div:nth-child(1) {
+    margin: 200px;
+}
