@@ -24,8 +24,10 @@ export default class JournalEntry extends Component  {
   };
     render() {
       return (
-        <div className="">
+        <div className="journal-grid ">
+
           <h2 className="master-headline journal-headline">This is Journal Entry</h2>
+          
           <form onSubmit={this.handleFormSubmit} className="form-grid">
             <input 
               className="textbox master-text-headline" 
@@ -43,13 +45,15 @@ export default class JournalEntry extends Component  {
               value={this.state.user}
               onChange={this.handleChange}
               />
-            <br></br>
-            <Link to="/summary/MainSummary">
-              <button
-               onClick={this.handleFormSubmit}
-               >continue</button>
-            </Link>
+            <div>
+              <Link to="/summary/MainSummary">
+                <button
+                onClick={this.handleFormSubmit}
+                >continue</button>
+              </Link>
+            </div>
           </form>
+
         </div>
       )
     }    

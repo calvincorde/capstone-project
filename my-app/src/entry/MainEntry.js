@@ -15,7 +15,7 @@ import JournalEntry from "./JournalEntry"
 export default function MainEntry() {
   return ( 
     <div>
-      <h1 className="master-headline">This is Main Entry</h1>
+      {/* <h1 className="master-headline">This is Main Entry</h1> */}
       <Switch>
         <Route path="/entry/MainEntry" component={MoodEntry1} />
         <Route path="/entry/Mood/MoodEntry2" component={MoodEntry2} />

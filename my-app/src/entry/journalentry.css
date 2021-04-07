@@ -1,18 +1,32 @@
 
 
+.journal-grid {
+    display: grid;
+    grid-template-rows: 2fr 4fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .form-grid {
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
+    grid-template-rows: 5fr 5fr 1fr;
+    justify-items: center;
+    align-items: center;
+    width: 100vw;
+
+}
+
+form {
+    height: auto;
+    width: auto;
+    margin: 0%;
 }
 
 .textbox {
-    /* min-width: 400px;
-    min-height: 200px; */
-    border-radius: 20px;
     background: none;
     color: white;
-    padding: 0rem 4rem;
 }
 
 
@@ -23,9 +37,6 @@
     text-align: center;
 }
 
-.bg-color {
-    background: linear-gradient(to top, #02ADF5, #FF951C);
-}
 
 input {
     border-style: none;
