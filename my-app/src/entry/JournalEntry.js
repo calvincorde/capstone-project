@@ -24,27 +24,30 @@ export default class JournalEntry extends Component  {
   };
     render() {
       return (
-        <div className="journal-grid ">
+        <div className="journal-grid">
 
-          <h2 className="master-headline journal-headline">This is Journal Entry</h2>
+          <h2 className="master-headline journal-headline">personal journal</h2>
           
           <form onSubmit={this.handleFormSubmit} className="form-grid">
-            <input 
-              className="textbox master-text-headline" 
+            
+            <textarea 
+              className="  textarea-headline " 
               type="text" 
               name="headline"
-              placeholder="Headline"
+              placeholder="Title"
               value={this.state.user}
               onChange={this.handleChange}
               />
-            <input 
-              className="textbox master-text-text" 
+
+            <textarea 
+              className=" master-text-text textarea-entry " 
               type="text" 
               name="entry"
               placeholder="Write a new entry"
               value={this.state.user}
               onChange={this.handleChange}
               />
+
             <div>
               <Link to="/summary/MainSummary">
                 <button
@@ -52,6 +55,7 @@ export default class JournalEntry extends Component  {
                 >continue</button>
               </Link>
             </div>
+
           </form>
 
         </div>

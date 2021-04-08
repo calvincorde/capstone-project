@@ -33,7 +33,7 @@ export default function TagsEntry() {
         <h2 className="master-headline tags-headline">what are the first things that came to your mind?</h2>
         <ul className="ul-grid">
           {tags.map((tag, index) => (
-              <li key={index} className="tag tags">
+              <li key={index} className="tag">
               <span className="tag-title">{tag}</span>
               <i 
               className="material-icons tag-close-icon" 

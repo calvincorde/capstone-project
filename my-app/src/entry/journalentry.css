@@ -2,7 +2,7 @@
 
 .journal-grid {
     display: grid;
-    grid-template-rows: 2fr 4fr;
+    grid-template-rows: 3fr 2fr;
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
@@ -11,36 +11,43 @@
 
 .form-grid {
     display: grid;
-    grid-template-rows: 5fr 5fr 1fr;
+    grid-template-rows: 2fr 5fr 1fr;
     justify-items: center;
     align-items: center;
     width: 100vw;
-
+    height: 50vh;
+    margin-bottom: 100px;
 }
 
-form {
-    height: auto;
-    width: auto;
-    margin: 0%;
+.journal-headline {
+    color: white;
+    font-size: 4rem;   
+    line-height: 3.5rem;
+    text-align: center;
+    opacity: 60%;
 }
 
-.textbox {
+textarea {
+    border-style: none;
+    border: none;
+    color: white;
     background: none;
+    width: 250px;
+}
+
+textarea::placeholder {
     color: white;
 }
 
-
-.journal-headline {
-	color: white;
-    font-size: 5rem;   
-    line-height: 5rem;
-    text-align: center;
+.textarea-headline {
+    height: 60px;
+    font-family: 'DMSerifDisplay-Regular';
+    font-size: 1.5rem;
 }
 
-
-input {
-    border-style: none;
-    border: none;
+.textarea-entry {
+    height: 300px;
+    margin-bottom: 20px;
 }
 
 textarea:focus, input:focus{
