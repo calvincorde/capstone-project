@@ -1,11 +1,12 @@
 
 .stickyNav {
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  margin: 20px 20%;
+  justify-items: center;
+  margin-top: 1rem;
+  transform: scale(0.85);
 }
 
 .scrolled {
