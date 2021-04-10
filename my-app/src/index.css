@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0%;
 }
 
 code {
@@ -32,12 +33,23 @@ code {
   color: white;
 }
 
+.master-topic-headline {
+  font-family: "Roboto-Light";
+  font-weight: 300;
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 0.5rem;
+
+}
+
 .master-text-headline {
-  font-family: "Roboto-Bold";
+  font-family: "DMSerifDisplay-Regular";
+  color: white;
 }
 
 .master-text-text {
   font-family: "Roboto-Light";
+  color: white;
 }
 
 button {

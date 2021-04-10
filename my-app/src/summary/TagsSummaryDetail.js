@@ -1,4 +1,4 @@
-import '../Tags.css'
+import './Tags.css'
 
 export default function TagsSummaryDetail() {
     return (

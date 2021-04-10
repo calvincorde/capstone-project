@@ -28,7 +28,11 @@ const MoodSummary = () => {
 
     return (
       <div>
-        <h2 className="master-headline">This is Mood Summary</h2>
+        <div className="months-change">
+          <i className="material-icons" style={{color: "white"}}>chevron_left</i>
+          <h3 className="master-topic-headline">APRIL</h3>
+          <i className="material-icons" style={{color: "white"}}>chevron_right</i>
+        </div>
         <Radar 
           data={{
             labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
