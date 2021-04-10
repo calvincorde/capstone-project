@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 export default function TagsSummary() {
 
     return (
-      <div>
+      <div className="tags-grid">
         <h2 className="master-headline">This is Tags Summary</h2>
-        <p className="myTags">Tag1</p>
-        <p className="myTags">Tag2</p>
-        <p className="myTags">Tag3</p>
+        <div className="tag-list-grid">
+          <p className="myTags">Tag1</p>
+          <p className="myTags">Tag2</p>
+          <p className="myTags">Tag3</p>
+        </div>
         <Link to="/summary/TagsSummaryDetail">
         <button>Insight</button>
       </Link>

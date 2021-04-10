@@ -13,7 +13,6 @@ import TagsSummaryDetail from "./TagsSummaryDetail"
 export default function MainSummary() {
   return (
     <div>
-      <h1 className="master-headline">This is Main Summary</h1>
       <Switch>
           <Route path="/summary/MainSummary" component={SummaryOverview} />
           <Route path="/summary/MoodSummaryDetail" component={MoodSummaryDetail} />
