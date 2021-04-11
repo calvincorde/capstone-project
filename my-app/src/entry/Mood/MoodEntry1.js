@@ -34,7 +34,7 @@ export default class MoodEntry1 extends Component {
 
             <div className="grid">
 
-              <i className="material-icons item-a" style={{color: "white"}}>mood</i>
+              <i className="material-icons item-a" style={{color: "rgb(255, 107, 89)"}}>mood</i>
 
               <div className="grid-text">
                 <h2 className="master-headline mood-h2">how are <br></br>you today?</h2>
@@ -53,7 +53,7 @@ export default class MoodEntry1 extends Component {
                 />
               </div>
 
-              <i className="material-icons item-b" style={{color: "white"}}>sentiment_very_dissatisfied</i>
+              <i className="material-icons item-b" style={{color: "rgb(255, 209, 83)"}}>sentiment_very_dissatisfied</i>
 
               <div>
                 <Link to="/entry/Mood/MoodEntry2">

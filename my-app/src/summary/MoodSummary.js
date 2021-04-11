@@ -82,7 +82,7 @@ const MoodSummary = () => {
 
         
         <Link to="/summary/MoodSummaryDetail">
-          <button>Insight</button>
+          <button>insight</button>
         </Link>
         
       </div>

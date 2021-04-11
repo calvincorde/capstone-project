@@ -30,7 +30,7 @@ export default function TagsEntry() {
     <div className="tag-grid">
 
       <div className="tags-input">
-        <h2 className="master-headline tags-headline">what are the first things that came to your mind?</h2>
+        <h4 className="tags-entry-headline">whats up your mind?</h4>
         <ul className="ul-grid">
           {tags.map((tag, index) => (
               <li key={index} className="tag">
@@ -55,7 +55,7 @@ export default function TagsEntry() {
         <Link to="/entry/JournalEntry">
           <button
           onClick={handleFormSubmit}
-          className="master-text-text button"
+          className="master-text-text"
           >continue</button>
         </Link>
       </div>

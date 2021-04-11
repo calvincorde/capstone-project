@@ -23,7 +23,7 @@ export default function TagsSummary() {
         </div>
         
         <Link to="/summary/TagsSummaryDetail">
-        <button>Insight</button>
+        <button>insight</button>
       </Link>
       </div>
     )
