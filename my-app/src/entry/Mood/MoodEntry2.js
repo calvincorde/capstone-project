@@ -34,11 +34,14 @@ export default class MoodEntry2 extends Component {
 
             <div className="grid">
 
+            <i className="material-icons item-a" style={{color: "white"}}>mood</i>
+
+
               <div className="grid-text">
                 <h2 className="master-headline mood-h2">how was <br></br> your sleep?</h2>
               </div>
 
-              <div className="">
+              <div className="range-style">
                 <input 
                 type="range" 
                 id="mood" 
@@ -50,6 +53,9 @@ export default class MoodEntry2 extends Component {
                 onChange={this.handleChange}
                 />
               </div>
+
+              <i className="material-icons item-b" style={{color: "white"}}>sentiment_very_dissatisfied</i>
+
 
               <div>
                 <Link to="/entry/Mood/MoodEntry3">
