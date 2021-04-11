@@ -15,7 +15,6 @@ export default function JournalSummary() {
         <div>
           <h3 className="master-text-headline journal-summary-headline">Magna aliquyam erat</h3>
           <p className="master-text-text journal-summary-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua...</p>
-          <i className="material-icons" style={{color: "white"}}>chevron_right</i>
         </div>
 
         <div>
