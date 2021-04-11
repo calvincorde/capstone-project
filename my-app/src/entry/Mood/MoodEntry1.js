@@ -38,7 +38,7 @@ export default class MoodEntry1 extends Component {
                 <h2 className="master-headline mood-h2">how are <br></br>you today?</h2>
               </div>
 
-              <div className="">
+              <div className="range-style">
                 <input 
                 type="range" 
                 id="mood" 
