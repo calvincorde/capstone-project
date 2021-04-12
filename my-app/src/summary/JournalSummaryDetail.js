@@ -20,7 +20,7 @@ export default function JournalSummaryDetail() {
 
             <div>
             <h3 className="master-text-headline journal-summary-headline">
-            Magna aliquyam erat
+            Lorem Ipsum
             <i className="material-icons" style={{color: "white", transform: "scale(1.1)"}}>chevron_right</i>
             </h3>
             <p className="master-text-text journal-summary-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua...</p>

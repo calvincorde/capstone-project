@@ -13,7 +13,7 @@ export default function JournalSummary() {
         </div>
 
         <div>
-          <h3 className="master-text-headline journal-summary-headline">Magna aliquyam erat</h3>
+          <h3 className="master-text-headline journal-summary-headline">Lorem Ipsum</h3>
           <p className="master-text-text journal-summary-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua...</p>
         </div>
 

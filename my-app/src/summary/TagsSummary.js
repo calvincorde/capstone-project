@@ -16,7 +16,7 @@ export default function TagsSummary() {
         <div className="tag-list-grid">
           <p className="myTags">finals</p>
           <p className="myTags">homework</p>
-          <p className="myTags">timemanagement</p>
+          <p className="myTags">time</p>
           <p className="myTags">tests</p>
           <p className="myTags">money</p>
           <p className="myTags">bedtime</p>

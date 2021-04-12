@@ -38,7 +38,7 @@ export default class MoodEntry3 extends Component {
 
 
               <div className="grid-text">
-                <h2 className="master-headline mood-h2">how good got you <br></br> get up?</h2>
+                <h2 className="master-headline mood-h2">how did you wake up?</h2>
               </div>
 
               <div className="range-style">
