@@ -1,0 +1,30 @@
+{
+  "name": "mindmee",
+  "version": "1.0.0",
+  "description": "quantified mindfulness",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ./my-app && npm start",
+    "build": "cd ./my_app && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calvincorde/capstone-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calvincorde/capstone-project/issues"
+  },
+  "homepage": "https://github.com/calvincorde/capstone-project#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@mui/material": "^5.2.7",
+    "chart.js": "^2.9.4",
+    "react-chartjs-2": "^2.11.1",
+    "react-native-webview": "^11.17.2",
+    "recharts": "^2.1.8"
+  }
+}
