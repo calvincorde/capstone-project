@@ -11,9 +11,7 @@ export default function SummaryOverview() {
   return (
 
     <div className="overview-grid">
-                 <div className="header">
-                  <h1>How it is going...</h1>
-                  </div>
+
       
 
             <div className="overview-content">
