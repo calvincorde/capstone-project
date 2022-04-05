@@ -1,20 +1,19 @@
-use std::collections::HashMap;
 use anyhow::Result;
+use chrono::NaiveDate;
 use rocket::Rocket;
 use rocket_contrib::json::Json;
 use rocket_contrib::uuid::Uuid as RocketUuid;
+use std::collections::HashMap;
 use uuid::Uuid;
 
+use crate::analysis::aggregates;
 use crate::crud::notes;
+use crate::crud::users;
 use crate::db::guard::DbConn;
 use crate::models::notes::Note;
-use crate::schemas::notes::{NoteCreate, NoteUpdate};
-
-use crate::crud::users;
 use crate::models::users::User;
+use crate::schemas::notes::{NoteCreate, NoteUpdate};
 use crate::schemas::users::{UserCreate, UserUpdate};
-
-use crate::analysis::aggregates;
 
 //Api commands for notes
 
@@ -90,10 +89,9 @@ fn delete_user(obj_id: RocketUuid, db: DbConn) -> Result<Json<User>> {
 //     // Ok(Json(found_note))
 // }
 
-#[get("/<obj_id>/<affect_dimension>")]
-fn affect_aggregates(obj_id: String, affect_dimension: String, db: DbConn) -> Result<Json<HashMap<u32, i16>>> {
-    // let uuid = Uuid::from_bytes(*obj_id.as_bytes());
-    let affect_aggregates = aggregates::analyse(&db, obj_id, affect_dimension)?;
+#[get("/<obj_id>")]
+fn affect_aggregates(obj_id: String, db: DbConn) -> Result<Json<HashMap<String, HashMap<NaiveDate, i16>>>> {
+    let affect_aggregates = aggregates::long_term_affect_trend(&db, obj_id)?;
     Ok(Json(affect_aggregates))
 }
 
@@ -104,4 +102,4 @@ pub fn fuel(rocket: Rocket) -> Rocket {
         .mount("/api/summary", routes![affect_aggregates])
 
 
-}
+    im
