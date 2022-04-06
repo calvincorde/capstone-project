@@ -1,1 +1,1 @@
-pub mod aggregates;
+pub mod summary_page;

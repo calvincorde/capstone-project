@@ -1,12 +1,10 @@
 use anyhow::Result;
-use chrono::NaiveDate;
 use rocket::Rocket;
 use rocket_contrib::json::Json;
 use rocket_contrib::uuid::Uuid as RocketUuid;
-use std::collections::HashMap;
 use uuid::Uuid;
 
-use crate::analysis::aggregates;
+use crate::analysis::summary_page::{Elo, summary_page_fun};
 use crate::crud::notes;
 use crate::crud::users;
 use crate::db::guard::DbConn;
@@ -90,16 +88,15 @@ fn delete_user(obj_id: RocketUuid, db: DbConn) -> Result<Json<User>> {
 // }
 
 #[get("/<obj_id>")]
-fn affect_aggregates(obj_id: String, db: DbConn) -> Result<Json<HashMap<String, HashMap<NaiveDate, i16>>>> {
-    let affect_aggregates = aggregates::long_term_affect_trend(&db, obj_id)?;
-    Ok(Json(affect_aggregates))
+fn summary(obj_id: String, db: DbConn)
+           -> Result<Json<Elo>> {
+    let summary_p = summary_page_fun(&db, obj_id)?;
+    Ok(Json(summary_p))
 }
 
 
 pub fn fuel(rocket: Rocket) -> Rocket {
     rocket.mount("/api/users", routes![create_user, read_user, update_user, delete_user])
         .mount("/api/notes", routes![create, read, update, delete])
-        .mount("/api/summary", routes![affect_aggregates])
-
-
-    im
+        .mount("/api/summary", routes![summary])
+}
