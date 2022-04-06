@@ -1,7 +1,15 @@
-.journal-summary-grid {
+.summary-grid {
     display: grid;
-    gap: 70px;
-    grid-template-rows: repeat(4, 300px);
+    gap: 50px;
+    grid-template-rows: repeat(1, 100px);
+    justify-items: center;
+    align-items: center;
+}
+
+.summary-header-grid {
+    display: grid;
+    gap: 5px;
+    grid-template-rows: repeat(1, 50px);
     justify-items: center;
     align-items: center;
 }

@@ -1,0 +1,78 @@
+Index: backend/src/analysis/aggregates.rs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>use anyhow::Result;\nuse chrono::Datelike;\nuse diesel::dsl::{date, not, sum};\nuse diesel::pg::PgConnection;\nuse diesel::prelude::*;\nuse diesel::sql_query;\nuse uuid::Uuid;\nuse std::collections::HashMap;\nuse crate::analysis::aggregates::notes::uid;\nuse crate::diesel_schema::notes;\nuse crate::diesel_schema::notes::{timestamp, valence};\nuse crate::models::notes::Note;\nuse std::ops::{Index, IndexMut};\n\nimpl Index<&'_ str> for Note {\n    type Output = i16;\n    fn index(&self, s: &str) -> &i16 {\n        match s {\n            \"valence\" => &self.valence,\n            \"arousal\" => &self.arousal,\n            \"activity_level\" => &self.activity_level,\n            \"activity_valence\" => &self.activity_valence,\n            _ => panic!(\"unknown field: {}\", s),\n        }\n    }\n}\n\nimpl IndexMut<&'_ str> for Note {\n    fn index_mut(&mut self, s: &str) -> &mut i16 {\n        match s {\n            \"valence\" => &mut self.valence,\n            \"arousal\" => &mut self.arousal,\n            \"activity_level\" => &mut self.activity_level,\n            \"activity_valence\" => &mut self.activity_valence,\n            _ => panic!(\"unknown field: {}\", s),\n        }\n    }\n}\npub fn analyse(db: &PgConnection, obj_id: String, affect_dimension: String) -> Result<HashMap<u32, i16>> {\n    //sql query\n    let results = notes::table\n        .order(timestamp)\n        .filter(uid.eq(obj_id))\n        .load::<Note>(db)\n        .expect(\"Error loading posts\");\n\n    let mut week;\n    let mut affect_data: HashMap<u32, i16> = HashMap::new();\n    let mut week_counter: HashMap<u32,i16> = HashMap::new();\n    //aggregate all results and sum\n    for note in results {\n        week = note.timestamp.iso_week().week();\n        if !affect_data.contains_key(&week){\n            affect_data.insert(\n                week,\n                note[&affect_dimension]\n            );\n            week_counter.insert(week, 1);\n        }\n        else{\n            *affect_data.get_mut(&week).unwrap() += note[&affect_dimension];\n            *week_counter.get_mut(&week).unwrap() += 1;\n        }\n    }\n    for (key, value) in week_counter {\n        *affect_data.get_mut(&key).unwrap() /= value;\n        // println!(\" {}: {}\", key, value);\n    }\n     Ok(affect_data)\n}\n\n// pub fn analysex(db: &PgConnection, obj_id: Uuid) -> Result<Note> {\n//     let note = notes::table.find(obj_id).get_result::<Note>(db)?;\n//     Ok(note)\n// }
+===================================================================
+diff --git a/backend/src/analysis/aggregates.rs b/backend/src/analysis/aggregates.rs
+--- a/backend/src/analysis/aggregates.rs	
++++ b/backend/src/analysis/aggregates.rs	
+@@ -36,37 +36,46 @@
+         }
+     }
+ }
+-pub fn analyse(db: &PgConnection, obj_id: String, affect_dimension: String) -> Result<HashMap<u32, i16>> {
++pub fn long_term_affect_trend(db: &PgConnection, obj_id: String) -> Result<HashMap<String,HashMap<NaiveDate, i16>>> {
+     //sql query
+     let results = notes::table
+         .order(timestamp)
+         .filter(uid.eq(obj_id))
+         .load::<Note>(db)
+         .expect("Error loading posts");
++    const affect_dimensions:[&str;4] = ["valence","arousal","activity_level","activity_valence"];
++    let mut affect_data: HashMap<String,HashMap<NaiveDate, i16>> = HashMap::new();
+ 
+-    let mut week;
+-    let mut affect_data: HashMap<u32, i16> = HashMap::new();
+-    let mut week_counter: HashMap<u32,i16> = HashMap::new();
+-    //aggregate all results and sum
+-    for note in results {
+-        week = note.timestamp.iso_week().week();
+-        if !affect_data.contains_key(&week){
+-            affect_data.insert(
+-                week,
+-                note[&affect_dimension]
+-            );
+-            week_counter.insert(week, 1);
+-        }
+-        else{
+-            *affect_data.get_mut(&week).unwrap() += note[&affect_dimension];
+-            *week_counter.get_mut(&week).unwrap() += 1;
+-        }
+-    }
+-    for (key, value) in week_counter {
+-        *affect_data.get_mut(&key).unwrap() /= value;
+-        // println!(" {}: {}", key, value);
++    for affect_dimension in affect_dimensions {
++        let mut week: NaiveDate;
++        let mut dimension_data: HashMap<NaiveDate, i16> = HashMap::new();
++        let mut week_counter: HashMap<NaiveDate, i16> = HashMap::new();
++        //aggregate all results and sum
++        for note in results {
++            week = NaiveDate::from_isoywd(note.timestamp.year(),
++                                          note.timestamp.iso_week().week(),
++                                          Weekday::Mon);
++            if !dimension_data.contains_key(&week) {
++                dimension_data.insert(
++                    week,
++                    note[&affect_dimension],
++                );
++                week_counter.insert(week, 1);
++            } else {
++                *dimension_data.get_mut(&week).unwrap() += note[&affect_dimension];
++                *week_counter.get_mut(&week).unwrap() += 1;
++            }
++        }
++        for (key, value) in week_counter {
++            *dimension_data.get_mut(&key).unwrap() /= value;
++            // println!(" {}: {}", key, value);
++        }
++        affect_data.insert(
++            affect_dimension.to_string(),
++            dimension_data
++        );
+     }
+-     Ok(affect_data)
++    Ok(affect_data)
+ }
+ 
+ // pub fn analysex(db: &PgConnection, obj_id: Uuid) -> Result<Note> {

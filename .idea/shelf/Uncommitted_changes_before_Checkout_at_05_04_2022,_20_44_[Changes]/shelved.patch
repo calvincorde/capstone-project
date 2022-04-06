@@ -1,0 +1,157 @@
+Index: backend/src/api/endpoints/commands.rs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>use std::collections::HashMap;\nuse anyhow::Result;\nuse rocket::Rocket;\nuse rocket_contrib::json::Json;\nuse rocket_contrib::uuid::Uuid as RocketUuid;\nuse uuid::Uuid;\n\nuse crate::crud::notes;\nuse crate::db::guard::DbConn;\nuse crate::models::notes::Note;\nuse crate::schemas::notes::{NoteCreate, NoteUpdate};\n\nuse crate::crud::users;\nuse crate::models::users::User;\nuse crate::schemas::users::{UserCreate, UserUpdate};\n\nuse crate::analysis::aggregates;\n\n//Api commands for notes\n\n#[post(\"/\", format = \"json\", data = \"<obj_in>\")]\nfn create(obj_in: Json<NoteCreate>, db: DbConn) -> Result<Json<Note>> {\n    let inserted_note = notes::create(&db, obj_in.0)?;\n    Ok(Json(inserted_note))\n}\n\n#[get(\"/<obj_id>\")]\nfn read(obj_id: RocketUuid, db: DbConn) -> Result<Json<Note>> {\n    let uuid = Uuid::from_bytes(*obj_id.as_bytes());\n    let found_note = notes::find(&db, uuid)?;\n    Ok(Json(found_note))\n}\n\n#[patch(\"/\", format = \"json\", data = \"<obj_in>\")]\nfn update(obj_in: Json<NoteUpdate>, db: DbConn) -> Result<Json<Note>> {\n    let updated_note = notes::update(&db, &obj_in.0)?;\n    Ok(Json(updated_note))\n}\n\n#[delete(\"/<obj_id>\")]\nfn delete(obj_id: RocketUuid, db: DbConn) -> Result<Json<Note>> {\n    let uuid = Uuid::from_bytes(*obj_id.as_bytes());\n    let deleted_note = notes::delete(&db, uuid)?;\n    Ok(Json(deleted_note))\n}\n\n\n//Api commands for users\n\n#[post(\"/\", format = \"json\", data = \"<obj_in>\")]\nfn create_user(obj_in: Json<UserCreate>, db: DbConn) -> Result<Json<User>> {\n    let inserted_user = users::create(&db, obj_in.0)?;\n    Ok(Json(inserted_user))\n}\n\n#[get(\"/<obj_id>\")]\nfn read_user(obj_id: RocketUuid, db: DbConn) -> Result<Json<User>> {\n    let uuid = Uuid::from_bytes(*obj_id.as_bytes());\n    let found_user = users::find(&db, uuid)?;\n    Ok(Json(found_user))\n}\n\n#[patch(\"/\", format = \"json\", data = \"<obj_in>\")]\nfn update_user(obj_in: Json<UserUpdate>, db: DbConn) -> Result<Json<User>> {\n    let updated_user = users::update(&db, &obj_in.0)?;\n    Ok(Json(updated_user))\n}\n\n#[delete(\"/<obj_id>\")]\nfn delete_user(obj_id: RocketUuid, db: DbConn) -> Result<Json<User>> {\n    let uuid = Uuid::from_bytes(*obj_id.as_bytes());\n    let deleted_user = users::delete(&db, uuid)?;\n    Ok(Json(deleted_user))\n}\n\n\n//Api commands for analysis data\n\n// #[get(\"/obj_id\")]\n// fn aggregate(obj_id: RocketUuid, db: DbConn){\n//     let uuid = Uuid::from_bytes(*obj_id.as_bytes());\n//     // let found_note = notes::find(&db, uuid)?;\n//     let got_summary = aggregates::an alyse(&db, uuid);\n// }\n\n// #[get(\"/<obj_id>\")]\n// fn aggregatex(obj_id: RocketUuid, db: DbConn) -> Result<Json<Note>> {\n//     let uuid = Uuid::from_bytes(*obj_id.as_bytes());\n//     let found_note = aggregates::analyse(&db, uuid)?;\n//     // Ok(Json(found_note))\n// }\n\n#[get(\"/<obj_id>/<affect_dimension>\")]\nfn affect_aggregates(obj_id: String, affect_dimension: String, db: DbConn) -> Result<Json<HashMap<u32, i16>>> {\n    // let uuid = Uuid::from_bytes(*obj_id.as_bytes());\n    let affect_aggregates = aggregates::analyse(&db, obj_id, affect_dimension)?;\n    Ok(Json(affect_aggregates))\n}\n\n\npub fn fuel(rocket: Rocket) -> Rocket {\n    rocket.mount(\"/api/users\", routes![create_user, read_user, update_user, delete_user])\n        .mount(\"/api/notes\", routes![create, read, update, delete])\n        .mount(\"/api/summary\", routes![affect_aggregates])\n\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/src/api/endpoints/commands.rs b/backend/src/api/endpoints/commands.rs
+--- a/backend/src/api/endpoints/commands.rs	
++++ b/backend/src/api/endpoints/commands.rs	
+@@ -4,7 +4,7 @@
+ use rocket_contrib::json::Json;
+ use rocket_contrib::uuid::Uuid as RocketUuid;
+ use uuid::Uuid;
+-
++use chrono::NaiveDate;
+ use crate::crud::notes;
+ use crate::db::guard::DbConn;
+ use crate::models::notes::Note;
+@@ -90,10 +90,10 @@
+ //     // Ok(Json(found_note))
+ // }
+ 
+-#[get("/<obj_id>/<affect_dimension>")]
+-fn affect_aggregates(obj_id: String, affect_dimension: String, db: DbConn) -> Result<Json<HashMap<u32, i16>>> {
++#[get("/<obj_id>")]
++fn affect_aggregates(obj_id: String, db: DbConn) -> Result<HashMap<String,HashMap<NaiveDate, i16>>> {
+     // let uuid = Uuid::from_bytes(*obj_id.as_bytes());
+-    let affect_aggregates = aggregates::analyse(&db, obj_id, affect_dimension)?;
++    let affect_aggregates = aggregates::long_term_affect_trend(&db, obj_id)?;
+     Ok(Json(affect_aggregates))
+ }
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"b503a702-cd70-422f-9a50-c37caa588d2b\" name=\"Changes\" comment=\"mvp_version\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MacroExpansionManager\">\n    <option name=\"directoryName\" value=\"7gu2s1i9\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"25Q1qh5gIPeN8i6JKqhQzm6kmov\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/../mindmee\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"editing.templates\" />\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"b503a702-cd70-422f-9a50-c37caa588d2b\" name=\"Changes\" comment=\"\" />\n      <created>1645444689413</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1645444689413</updated>\n    </task>\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"main\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n    <option name=\"RECENT_FILTERS\">\n      <map>\n        <entry key=\"Branch\">\n          <value>\n            <list>\n              <RecentGroup>\n                <option name=\"FILTER_VALUES\">\n                  <option value=\"main\" />\n                </option>\n              </RecentGroup>\n            </list>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n    <MESSAGE value=\"mvp_version\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"mvp_version\" />\n    <option name=\"OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n    <option name=\"REFORMAT_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n    <option name=\"REARRANGE_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -1,8 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="b503a702-cd70-422f-9a50-c37caa588d2b" name="Changes" comment="mvp_version">
++    <list default="true" id="b503a702-cd70-422f-9a50-c37caa588d2b" name="Changes" comment="trial add second data visualisation measure and proof of concept for nested data passing between front end and backend">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/analysis/aggregates.rs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/analysis/aggregates.rs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/api/endpoints/commands.rs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/api/endpoints/commands.rs" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -35,8 +37,15 @@
+   <component name="PropertiesComponent">
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mindmee" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
++    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
++    <property name="org.rust.hideNoCargoProjectNotifications/home/tobiball/projects/capstone-project/backend/src/analysis/aggregates.rs" value="true" />
++    <property name="org.rust.hideNoCargoProjectNotifications/home/tobiball/projects/capstone-project/backend/src/api/endpoints/commands.rs" value="true" />
+     <property name="settings.editor.selected.configurable" value="editing.templates" />
++  </component>
++  <component name="RustProjectSettings">
++    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
++    <option name="version" value="2" />
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+Index: backend/src/analysis/aggregates.rs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>use anyhow::Result;\nuse chrono::Datelike;\nuse diesel::dsl::{date, not, sum};\nuse diesel::pg::PgConnection;\nuse diesel::prelude::*;\nuse diesel::sql_query;\nuse uuid::Uuid;\nuse std::collections::HashMap;\nuse crate::analysis::aggregates::notes::uid;\nuse crate::diesel_schema::notes;\nuse crate::diesel_schema::notes::{timestamp, valence};\nuse crate::models::notes::Note;\nuse std::ops::{Index, IndexMut};\n\nimpl Index<&'_ str> for Note {\n    type Output = i16;\n    fn index(&self, s: &str) -> &i16 {\n        match s {\n            \"valence\" => &self.valence,\n            \"arousal\" => &self.arousal,\n            \"activity_level\" => &self.activity_level,\n            \"activity_valence\" => &self.activity_valence,\n            _ => panic!(\"unknown field: {}\", s),\n        }\n    }\n}\n\nimpl IndexMut<&'_ str> for Note {\n    fn index_mut(&mut self, s: &str) -> &mut i16 {\n        match s {\n            \"valence\" => &mut self.valence,\n            \"arousal\" => &mut self.arousal,\n            \"activity_level\" => &mut self.activity_level,\n            \"activity_valence\" => &mut self.activity_valence,\n            _ => panic!(\"unknown field: {}\", s),\n        }\n    }\n}\npub fn analyse(db: &PgConnection, obj_id: String, affect_dimension: String) -> Result<HashMap<u32, i16>> {\n    //sql query\n    let results = notes::table\n        .order(timestamp)\n        .filter(uid.eq(obj_id))\n        .load::<Note>(db)\n        .expect(\"Error loading posts\");\n\n    let mut week;\n    let mut affect_data: HashMap<u32, i16> = HashMap::new();\n    let mut week_counter: HashMap<u32,i16> = HashMap::new();\n    //aggregate all results and sum\n    for note in results {\n        week = note.timestamp.iso_week().week();\n        if !affect_data.contains_key(&week){\n            affect_data.insert(\n                week,\n                note[&affect_dimension]\n            );\n            week_counter.insert(week, 1);\n        }\n        else{\n            *affect_data.get_mut(&week).unwrap() += note[&affect_dimension];\n            *week_counter.get_mut(&week).unwrap() += 1;\n        }\n    }\n    for (key, value) in week_counter {\n        *affect_data.get_mut(&key).unwrap() /= value;\n        // println!(\" {}: {}\", key, value);\n    }\n     Ok(affect_data)\n}\n\n// pub fn analysex(db: &PgConnection, obj_id: Uuid) -> Result<Note> {\n//     let note = notes::table.find(obj_id).get_result::<Note>(db)?;\n//     Ok(note)\n// }
+===================================================================
+diff --git a/backend/src/analysis/aggregates.rs b/backend/src/analysis/aggregates.rs
+--- a/backend/src/analysis/aggregates.rs	
++++ b/backend/src/analysis/aggregates.rs	
+@@ -1,5 +1,5 @@
+ use anyhow::Result;
+-use chrono::Datelike;
++use chrono::{Weekday,NaiveDate,Datelike};
+ use diesel::dsl::{date, not, sum};
+ use diesel::pg::PgConnection;
+ use diesel::prelude::*;
+@@ -36,37 +36,46 @@
+         }
+     }
+ }
+-pub fn analyse(db: &PgConnection, obj_id: String, affect_dimension: String) -> Result<HashMap<u32, i16>> {
++pub fn long_term_affect_trend(db: &PgConnection, obj_id: String) -> Result<HashMap<String,HashMap<NaiveDate, i16>>> {
+     //sql query
+     let results = notes::table
+         .order(timestamp)
+         .filter(uid.eq(obj_id))
+         .load::<Note>(db)
+         .expect("Error loading posts");
++    const affect_dimensions:[&str;4] = ["valence","arousal","activity_level","activity_valence"];
++    let mut affect_data: HashMap<String,HashMap<NaiveDate, i16>> = HashMap::new();
+ 
+-    let mut week;
+-    let mut affect_data: HashMap<u32, i16> = HashMap::new();
+-    let mut week_counter: HashMap<u32,i16> = HashMap::new();
+-    //aggregate all results and sum
+-    for note in results {
+-        week = note.timestamp.iso_week().week();
+-        if !affect_data.contains_key(&week){
+-            affect_data.insert(
+-                week,
+-                note[&affect_dimension]
+-            );
+-            week_counter.insert(week, 1);
+-        }
+-        else{
+-            *affect_data.get_mut(&week).unwrap() += note[&affect_dimension];
+-            *week_counter.get_mut(&week).unwrap() += 1;
+-        }
+-    }
+-    for (key, value) in week_counter {
+-        *affect_data.get_mut(&key).unwrap() /= value;
+-        // println!(" {}: {}", key, value);
++    for affect_dimension in affect_dimensions {
++        let mut week: NaiveDate;
++        let mut dimension_data: HashMap<NaiveDate, i16> = HashMap::new();
++        let mut week_counter: HashMap<NaiveDate, i16> = HashMap::new();
++        //aggregate all results and sum
++        for note in results {
++            week = NaiveDate::from_isoywd(note.timestamp.year(),
++                                          note.timestamp.iso_week().week(),
++                                          Weekday::Mon);
++            if !dimension_data.contains_key(&week) {
++                dimension_data.insert(
++                    week,
++                    note[&affect_dimension],
++                );
++                week_counter.insert(week, 1);
++            } else {
++                *dimension_data.get_mut(&week).unwrap() += note[&affect_dimension];
++                *week_counter.get_mut(&week).unwrap() += 1;
++            }
++        }
++        for (key, value) in week_counter {
++            *dimension_data.get_mut(&key).unwrap() /= value;
++            // println!(" {}: {}", key, value);
++        }
++        affect_data.insert(
++            affect_dimension.to_string(),
++            dimension_data
++        );
+     }
+-     Ok(affect_data)
++    Ok(affect_data)
+ }
+ 
+ // pub fn analysex(db: &PgConnection, obj_id: Uuid) -> Result<Note> {

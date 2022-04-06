@@ -42,8 +42,8 @@ impl IndexMut<&'_ str> for Note {
 
 #[derive(Serialize)]
 pub struct Elo {
-    a: HashMap<String, HashMap<NaiveDate, i16>>,
-    b: HashMap<String, HashMap<i8, HashMap<Weekday, i16>>>,
+    long_term_trend: HashMap<String, HashMap<NaiveDate, i16>>,
+    short_term_comparison: HashMap<String, HashMap<i8, HashMap<Weekday, i16>>>,
 }
 
 pub fn long_term_trend(db: &PgConnection, obj_id: String) -> HashMap<String, HashMap<NaiveDate, i16>> {
@@ -136,8 +136,8 @@ pub fn short_term_comparison(db: &PgConnection, obj_id: String) -> HashMap<Strin
 pub fn summary_page_fun(db: &PgConnection, obj_id: String)
                         -> Result<Elo> {
     let elo = Elo {
-        a: long_term_trend(&db, (*obj_id).to_string()),
-        b: short_term_comparison(&db, obj_id),
+        long_term_trend: long_term_trend(&db, (*obj_id).to_string()),
+        short_term_comparison: short_term_comparison(&db, obj_id),
     };
 
     Ok(elo)

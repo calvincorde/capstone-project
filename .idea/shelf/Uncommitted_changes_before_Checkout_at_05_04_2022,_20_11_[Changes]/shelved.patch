@@ -1,0 +1,103 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"b503a702-cd70-422f-9a50-c37caa588d2b\" name=\"Changes\" comment=\"mvp_version\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MacroExpansionManager\">\n    <option name=\"directoryName\" value=\"7gu2s1i9\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"25Q1qh5gIPeN8i6JKqhQzm6kmov\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/../mindmee\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"editing.templates\" />\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"b503a702-cd70-422f-9a50-c37caa588d2b\" name=\"Changes\" comment=\"\" />\n      <created>1645444689413</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1645444689413</updated>\n    </task>\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"main\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n    <option name=\"RECENT_FILTERS\">\n      <map>\n        <entry key=\"Branch\">\n          <value>\n            <list>\n              <RecentGroup>\n                <option name=\"FILTER_VALUES\">\n                  <option value=\"main\" />\n                </option>\n              </RecentGroup>\n            </list>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n    <MESSAGE value=\"mvp_version\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"mvp_version\" />\n    <option name=\"OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n    <option name=\"REFORMAT_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n    <option name=\"REARRANGE_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 1c316bbed5906f55e754024f7b44e87633773ced)
++++ b/.idea/workspace.xml	(date 1649182261314)
+@@ -1,8 +1,11 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="b503a702-cd70-422f-9a50-c37caa588d2b" name="Changes" comment="mvp_version">
++    <list default="true" id="b503a702-cd70-422f-9a50-c37caa588d2b" name="Changes" comment="trial add second data visualisation measure and proof of concept for nested data passing between front end and backend">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/analysis/summary.rs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/analysis/summary.rs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/api/endpoints/commands.rs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/api/endpoints/commands.rs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/summary/JournalSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/summary/JournalSummary.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -10,6 +13,11 @@
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="GitSEFilterConfiguration">
+@@ -35,8 +43,19 @@
+   <component name="PropertiesComponent">
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
++    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="Rust&#10;HTML" />
+     <property name="last_opened_file_path" value="$PROJECT_DIR$/../mindmee" />
+-    <property name="settings.editor.selected.configurable" value="editing.templates" />
++    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
++    <property name="org.rust.hideNoCargoProjectNotifications/home/tobiball/projects/capstone-project/backend/src/analysis/aggregates.rs" value="true" />
++    <property name="org.rust.hideNoCargoProjectNotifications/home/tobiball/projects/capstone-project/backend/src/analysis/summary.rs" value="true" />
++    <property name="org.rust.hideNoCargoProjectNotifications/home/tobiball/projects/capstone-project/backend/src/api/endpoints/commands.rs" value="true" />
++    <property name="org.rust.hideNoCargoProjectNotifications/home/tobiball/projects/capstone-project/backend/src/schemas/notes.rs" value="true" />
++    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
++    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Rust" />
++  </component>
++  <component name="RustProjectSettings">
++    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
++    <option name="version" value="2" />
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -47,6 +66,21 @@
+       <option name="presentableId" value="Default" />
+       <updated>1645444689413</updated>
+     </task>
++    <task id="LOCAL-00001" summary="-">
++      <created>1648747028640</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1648747028640</updated>
++    </task>
++    <task id="LOCAL-00002" summary="trial add second data visualisation measure and proof of concept for nested data passing between front end and backend">
++      <created>1649144882191</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1649144882191</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -60,7 +94,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="main" />
++                        <option value="second_visual_measure_and_summary_refactoring" />
+                       </list>
+                     </value>
+                   </entry>
+@@ -89,8 +123,14 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
++    <ignored-roots>
++      <path value="$PROJECT_DIR$/frontend" />
++      <path value="$PROJECT_DIR$/sandbox/capstone/capstone-project" />
++    </ignored-roots>
+     <MESSAGE value="mvp_version" />
+-    <option name="LAST_COMMIT_MESSAGE" value="mvp_version" />
++    <MESSAGE value="-" />
++    <MESSAGE value="trial add second data visualisation measure and proof of concept for nested data passing between front end and backend" />
++    <option name="LAST_COMMIT_MESSAGE" value="trial add second data visualisation measure and proof of concept for nested data passing between front end and backend" />
+     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
