@@ -70,7 +70,7 @@ export default class MoodEntry2 extends Component {
                     <div>
                         <Link
                             to={{
-                                pathname: "/summary/MainSummary",
+                                pathname: "/entry/JournalEntry",
                             }}
                         >
                             <button

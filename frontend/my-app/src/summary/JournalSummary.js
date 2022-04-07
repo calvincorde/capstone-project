@@ -22,15 +22,28 @@ function summary_page_api() {
 
 summary_page_api()
 var page_data = JSON.parse(window.localStorage.getItem(0, page_data_obj));
-//var bar_data = (page_data["long_term_trend"]["valence"]).sort()
-const ordered = Object.keys( (page_data["long_term_trend"]["valence"])).sort().reduce(
-  (obj, key) => {
-    obj[key] =  (page_data["long_term_trend"]["valence"])[key];
-    return obj;
-  },
-  {}
-);
-console.log(page_data)
+
+var affect_dimensions = ["valence","arousal","activity_level","activity_valence"]
+var long_term_affect_data = {}
+var two_week_affect_data = {}
+
+var arrayLength = affect_dimensions.length;
+for (var aff_dim = 0; aff_dim < arrayLength; aff_dim++) {
+var ob = page_data["long_term_trend"][affect_dimensions[aff_dim]]
+console.log(ob)
+
+   //var bar_data = (page_data["long_term_trend"]["valence"]).sort()
+   page_data["long_term_trend"][affect_dimensions[aff_dim]] = Object.keys(ob).sort().reduce(
+     (obj, key) => {
+       obj[key] = ob[key];
+       return obj;
+     },
+     {}
+   );
+
+
+};
+
 const JournalSummary = () => {
      return (
 <div className = "summary-grid" >
@@ -92,10 +105,10 @@ div >
 
 <Bar
      data={{
-       labels: Object.keys(ordered),
+       labels: Object.keys(page_data["long_term_trend"]["valence"]),
        fontColor: 'white',
        datasets: [{
-           data: Object.values(ordered),
+           data: Object.values(page_data["long_term_trend"]["valence"]),
            backgroundColor: 'rgba(87, 156, 247, 1',
                            hoverBackgroundColor: 'rgba(137, 206, 255)',
 
@@ -229,16 +242,20 @@ div >
         },
         {
             scales: {
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Week',
-                        fontColor: 'white'
-                    },
-                    gridLines: {
-                        display: false
-                    },
-                }],
+                 xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Week',
+                                        fontColor: 'white',
+                                    },
+                                    ticks:{
+                                    display: true,
+                                                        autoSkip: true,
+                                                        maxTicksLimit: 1},
+                                    gridLines: {
+                                        display: false
+                                    },
+                                }],
                 yAxes: [{
                     ticks: {
                         min: 0,
@@ -349,15 +366,19 @@ div >
         {
             scales: {
                 xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Week',
-                        fontColor: 'white'
-                    },
-                    gridLines: {
-                        display: false
-                    },
-                }],
+                                   scaleLabel: {
+                                       display: true,
+                                       labelString: 'Week',
+                                       fontColor: 'white',
+                                   },
+                                   ticks:{
+                                   display: true,
+                                                       autoSkip: true,
+                                                       maxTicksLimit: 1},
+                                   gridLines: {
+                                       display: false
+                                   },
+                               }],
                 yAxes: [{
                     ticks: {
                         min: 0,
@@ -463,16 +484,20 @@ div >
         },
         {
             scales: {
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Week',
-                        fontColor: 'white'
-                    },
-                    gridLines: {
-                        display: false
-                    },
-                }],
+                 xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Week',
+                                        fontColor: 'white',
+                                    },
+                                    ticks:{
+                                    display: true,
+                                                        autoSkip: true,
+                                                        maxTicksLimit: 1},
+                                    gridLines: {
+                                        display: false
+                                    },
+                                }],
                 yAxes: [{
                     ticks: {
                         min: 0,

@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b503a702-cd70-422f-9a50-c37caa588d2b" name="Changes" comment="implemented single comprehensive long term aggregate api response for summary page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/analysis/summary_page.rs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/analysis/summary_page.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/summary/JournalSummary.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/summary/JournalSummary.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/my-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/entry/JournalEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/entry/JournalEntry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/entry/Mood/MoodEntry4.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/entry/Mood/MoodEntry4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/entry/journalentry.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/entry/journalentry.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/my-app/src/summary/JournalSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/summary/JournalSummary.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

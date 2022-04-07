@@ -2,11 +2,14 @@
 
 .journal-grid {
     display: grid;
-    grid-template-rows: 3fr 2fr;
-    grid-template-columns: 1fr;
+    grid-template-rows: 5fr 2fr;
+    grid-template-columns: 3fr;
     justify-items: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 .form-grid {
@@ -14,17 +17,26 @@
     grid-template-rows: 2fr 5fr 1fr;
     justify-items: center;
     align-items: center;
-    width: 100vw;
+    width: 80vw;
     height: 50vh;
     margin-bottom: 100px;
 }
 
 .journal-headline {
     color: white;
-    font-size: 4rem;   
+    font-style: italic;
+    font-size: 3rem;
     line-height: 3.5rem;
     text-align: center;
     opacity: 60%;
+}
+
+.journaling {
+    color: white;
+    font-size: 2rem;
+    line-height: 3.5rem;
+    text-align: center;
+    opacity: 30%;
 }
 
 textarea {
