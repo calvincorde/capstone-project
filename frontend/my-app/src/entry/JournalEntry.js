@@ -12,9 +12,8 @@ var requestOptions = {
  var quote;
   function summary_page_api() {
     const url = "https://zenquotes.io/api/random";
-    const proxy = "https://cors-anywhere.herokuapp.com/";
 
-    fetch( proxy + url)
+    fetch( url)
       .then(response => response.json())
       .then(data =>  quote = data)
       .then(data => {
