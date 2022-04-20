@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid'
 
+
 import './journalentry.css'
 
 var requestOptions = {
@@ -13,7 +14,7 @@ var requestOptions = {
   function summary_page_api() {
     const url = "https://zenquotes.io/api/random";
 
-    fetch( url)
+    fetch(url)
       .then(response => response.json())
       .then(data =>  quote = data)
       .then(data => {
@@ -21,7 +22,7 @@ var requestOptions = {
       .catch(error => console.log(error.message))
   }
 
-  summary_page_api()
+//  summary_page_api()
   var page_data = JSON.parse(window.localStorage.getItem("quote", quote));
 console.log(page_data['0'])
 export default class JournalEntry extends Component  {

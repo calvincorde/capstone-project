@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import './JournalSummary.css'
 import { Bar, Radar } from "react-chartjs-2";
+import backend from "./../Global_vars";
 
 var raw = "";
 var requestOptions = {
@@ -11,7 +12,7 @@ var requestOptions = {
 var page_data_obj;
 
 function summary_page_api() {
-  fetch("http://192.168.2.226:8000/api/summary/TobiBall/", requestOptions)
+  fetch("http://" + backend + "/api/summary/TobiBall/", requestOptions)
         .then(response => response.json())
            .then(data =>  page_data_obj = data)
            .then(data => {

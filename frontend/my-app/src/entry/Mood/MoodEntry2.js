@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Component } from 'react';
+import backend from "./../../Global_vars";
 
 import './MoodEntry2.css'
 
@@ -34,7 +35,7 @@ import './MoodEntry2.css'
           redirect: 'follow'
       };
 
-      fetch("http://192.168.178.23:8000/api/notes/", requestOptions)
+     fetch("http://" + backend + "/api/notes/", requestOptions)
           .then(response => response.text())
           .then(result => console.log(result))
           .catch(error => console.log('error', error))};

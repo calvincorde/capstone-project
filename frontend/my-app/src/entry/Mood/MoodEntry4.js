@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Component } from 'react';
+import backend from "./../../Global_vars";
 
 import './MoodEntry2.css'
 
@@ -34,7 +35,7 @@ export default class MoodEntry2 extends Component {
             redirect: 'follow'
         };
 
-        fetch("http://192.168.178.23:8000/api/notes/", requestOptions)
+     fetch("http://" + backend + "/api/notes/", requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error))};
@@ -49,7 +50,7 @@ export default class MoodEntry2 extends Component {
 
 
                     <div className="grid-text">
-                        <h2 className="master-headline mood-h2">do you look forward  <br></br>to todays activities?</h2>
+                        <h2 className="master-headline mood-h2">are today's activities  <br></br>enjoyable?</h2>
                     </div>
 
                     <div className="range-style">
@@ -70,7 +71,7 @@ export default class MoodEntry2 extends Component {
                     <div>
                         <Link
                             to={{
-                                pathname: "/entry/JournalEntry",
+                                pathname: "/summary/MainSummary",
                             }}
                         >
                             <button

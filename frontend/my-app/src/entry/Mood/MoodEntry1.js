@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { Component } from 'react';
+import backend from "./../../Global_vars";
+
 import './MoodEntry2.css'
 
 export default class MoodEntry1 extends Component {
@@ -38,7 +40,7 @@ export default class MoodEntry1 extends Component {
     };
 
     var obj;
-     fetch("http://192.168.178.23:8000/api/notes/", requestOptions)
+     fetch("http://" + backend + "/api/notes/", requestOptions)
       .then(response => response.json())
          .then(data =>  obj = data["id"])
          .then(data => {
