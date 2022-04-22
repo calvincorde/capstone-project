@@ -22,7 +22,7 @@ function summary_page_api() {
         .catch(error =>('error', error))
 }
 
-summary_page_api()
+componentWillMount:  summary_page_api()
 var page_data = JSON.parse(window.localStorage.getItem(0, page_data_obj));
 
 var affect_dimensions = ["valence","arousal","activity_level","activity_valence"]
