@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Component } from 'react';
-import backend from "./../../Global_vars";
+import {backend} from "./../../Global_vars";
 
 import './MoodEntry2.css'
 
@@ -10,35 +10,35 @@ import './MoodEntry2.css'
     moodslider2: ''
   };
 
-   handleChange = (event) => {
-    const input = event.target;
-    const value = parseInt(input.value);
+    handleChange = (event) => {
+        const input = event.target;
+        const value = parseInt(input.value);
 
-    this.setState({ value });
-  };
+        this.setState({ value });
+    };
 
-  handleFormSubmit = () => {
-    const { value } = this.state;
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
+    handleFormSubmit = () => {
+        const { value } = this.state;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
       var raw = JSON.stringify({
           "id": localStorage.getItem('obj'),
           "arousal": {value}['value']
+        });
+        console.log(raw);
+        var requestOptions = {
+            method: 'PATCH',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
 
-      });
-      console.log(raw);
-      var requestOptions = {
-          method: 'PATCH',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow'
-      };
-
-     fetch("http://" + backend + "/api/notes/", requestOptions)
-          .then(response => response.text())
-          .then(result => console.log(result))
-          .catch(error => console.log('error', error))};
+        var url = "http://" + backend + "/api/notes/";
+     fetch(url, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error))};
 
      render() {
          return (
@@ -66,8 +66,7 @@ import './MoodEntry2.css'
                          />
                      </div>
 
-                     <i className="material-icons item-b" style={{color: "rgb(255, 209, 83)"}}>notifications_paused
-                     </i>
+                     <i className="material-icons item-b" style={{color: "rgb(255, 209, 83)"}}>notifications_paused</i>
 
                      <div>
                          <Link
@@ -83,9 +82,9 @@ import './MoodEntry2.css'
                          </Link>
                      </div>
 
-                 </div>
+                </div>
 
-             </form>
-         )
-     }
- }
+            </form>
+        )
+    }
+}

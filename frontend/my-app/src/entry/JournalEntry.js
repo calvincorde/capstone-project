@@ -24,9 +24,9 @@ var requestOptions = {
 
 //  summary_page_api()
   var page_data = JSON.parse(window.localStorage.getItem("quote", quote));
-console.log(page_data['0'])
+
 export default class JournalEntry extends Component  {
-  
+
   state = {
     headline: '',
     entry: ''
@@ -50,12 +50,13 @@ export default class JournalEntry extends Component  {
     render() {
       return (
         <div className="journal-grid">
+        {/*
         <h4 className="journal-headline">{page_data['0']['q']}</h4>
-                <h20 className="journaling">{page_data['0']['a']}</h20>
-
+                <h2 className="journaling">{page_data['0']['a']}</h2>
+                */}
 
         </div>
       )
-    }    
+    }
   }
 

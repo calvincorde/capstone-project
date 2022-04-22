@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Component } from 'react';
-import backend from "./../../Global_vars";
+import {backend} from "./../../Global_vars";
 
 import './MoodEntry2.css'
 
@@ -25,7 +25,6 @@ export default class MoodEntry2 extends Component {
         var raw = JSON.stringify({
             "id": localStorage.getItem('obj'),
             "activity_valence": {value}['value']
-
         });
         console.log(raw);
         var requestOptions = {
@@ -35,7 +34,8 @@ export default class MoodEntry2 extends Component {
             redirect: 'follow'
         };
 
-     fetch("http://" + backend + "/api/notes/", requestOptions)
+        var url = "http://" + backend + "/api/notes/";
+        fetch(url, requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error))};

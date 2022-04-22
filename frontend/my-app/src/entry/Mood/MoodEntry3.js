@@ -1,49 +1,48 @@
 import { Link } from "react-router-dom";
 import { Component } from 'react';
-import backend from "./../../Global_vars";
-
+import {backend} from "./../../Global_vars";
 
 import './MoodEntry2.css'
 
-export default class MoodEntry2 extends Component {
+ export default class MoodEntry2 extends Component {
 
-    state = {
-        moodslider2: ''
-    };
+  state = {
+    moodslider2: ''
+  };
 
-    handleChange = (event) => {
-        const input = event.target;
-        const value = parseInt(input.value);
+   handleChange = (event) => {
+    const input = event.target;
+    const value = parseInt(input.value);
 
-        this.setState({ value });
-    };
+    this.setState({ value });
+  };
 
-    handleFormSubmit = () => {
-        const { value } = this.state;
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+  handleFormSubmit = () => {
+    const { value } = this.state;
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({
-            "id": localStorage.getItem('obj'),
-            "activity_level": {value}['value']
+      var raw = JSON.stringify({
+          "id": localStorage.getItem('obj'),
+          "activity_level": {value}['value']
 
-        });
-        console.log(raw);
-        var requestOptions = {
-            method: 'PATCH',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
+      });
+      console.log(raw);
+      var requestOptions = {
+          method: 'PATCH',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+      };
+        var url = "http://" + backend + "/api/notes/";
+     fetch(url, requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error))};
 
-     fetch("http://" + backend + "/api/notes/", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error))};
-
-    render() {
-        return (
-            <form onSubmit={this.handleFormSubmit}>
+     render() {
+         return (
+             <form onSubmit={this.handleFormSubmit}>
 
                 <div className="grid">
 
@@ -83,9 +82,9 @@ export default class MoodEntry2 extends Component {
                         </Link>
                     </div>
 
-                </div>
+                 </div>
 
-            </form>
-        )
-    }
-}
+             </form>
+         )
+     }
+ }
