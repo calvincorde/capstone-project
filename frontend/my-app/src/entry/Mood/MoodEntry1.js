@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { Component } from 'react';
 import {backend} from "./../../Global_vars";
+import {user_id} from "./../../Global_vars";
 
 import './MoodEntry2.css'
+import { Device } from '@capacitor/device';
 
 export default class MoodEntry1 extends Component {
- 
+
+
   state = {
     moodslider1: ''
   };
@@ -24,7 +27,7 @@ export default class MoodEntry1 extends Component {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      "uid": "TobiBall",
+      "uid": user_id,
       "timestamp": {myDate}['myDate'],
       "valence": {value}['value'],
       "arousal": 0,
@@ -40,7 +43,7 @@ export default class MoodEntry1 extends Component {
     };
 
     var obj;
-        var url = "http://" + backend + "/api/notes/";
+    var url = "http://" + backend + "/api/notes/";
      fetch(url, requestOptions)
       .then(response => response.json())
          .then(data =>  obj = data["id"])

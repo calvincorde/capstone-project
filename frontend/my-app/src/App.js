@@ -10,8 +10,6 @@ import Navigation from './Navigation';
 
 import MainEntry from "./entry/MainEntry"
 import MainSummary from "./summary/MainSummary"
-import backend from "./Global_vars";
-
 
 
 
