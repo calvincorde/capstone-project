@@ -6,6 +6,6 @@ const logDeviceInfo = async () => {
 }
 logDeviceInfo()
 export const backend = "161.35.144.228:3050";
-//export const user_id = JSON.parse(localStorage.getItem('item'));
-export const user_id = "test";
+export const user_id = JSON.parse(localStorage.getItem('item'));
+//export const user_id = "test";
 

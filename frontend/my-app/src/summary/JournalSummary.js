@@ -77,23 +77,31 @@ div >
 
  <
     div className = "header"
-    style = {{marginTop: "30px"}}
+    style = {{marginTop: [3]}}
     >
     <h3 > Happiness < /h3> < /
 div >
 
 <Radar
     options = {
+
         {
+
             legend: {
                 display: true
             },
             pointRadius: [0],
             scale: {
                 ticks: {
-                    display: false
-                }
+                    display: false,
+                            beginAtZero: true,
+                            max: 1000,
+                            min: 0,
+                },
+
+
             }
+
         }
     }
     data = {
@@ -103,20 +111,20 @@ div >
             datasets: [{
                     label: 'last 7 days',
                     data: Object.values(this.state.sc_vall),
-                    borderColor: ['rgba(95, 206, 255)'],
-                    borderWidth: "5px",
-                    pointRadius: [1],
-                    pointBorderWidth: [1.5],
+                    borderColor: ['rgba(50, 150, 255)'],
+                    borderWidth: [3],
+                    pointRadius: [3],
+                    pointBorderWidth: [2.5],
                     pointBorderColor: ['rgba(255, 255, 255, 0'],
                     backgroundColor: ['rgba(255, 255, 255, 0'],
                 },
                 {
                     label: 'previous 7 days',
                     data: Object.values(this.state.sc_valp),
-                    borderColor: ['rgba(90, 255, 153, 1)'],
-                    borderWidth: "5px",
-                    pointRadius: [1],
-                    pointBorderWidth: [1.5],
+                    borderColor: ['rgba(74, 212, 103, 1)'],
+                    borderWidth: [3],
+                    pointRadius: [3],
+                    pointBorderWidth: [2.5],
                     pointBorderColor: ['rgba(255, 255, 255, 0'],
                     backgroundColor: ['rgba(255, 255, 255, 0'],
                 }
@@ -195,10 +203,10 @@ div >
     />
      <
         div className = "header"
-            style = {{marginTop: "30px"}}
+            style = {{marginTop: [3]}}
         >
         <
-        h3 > Arousal < /h3> < /
+        h3 > Excitement / Calmness < /h3> < /
     div >
 
 <Radar
@@ -210,8 +218,11 @@ div >
             pointRadius: [0],
             scale: {
                 ticks: {
-                    display: false
-                }
+                    display: false,
+                            beginAtZero: true,
+                            max: 1000,
+                            min: 0,
+                },
             }
         }
     }
@@ -222,20 +233,20 @@ div >
            datasets: [{
                    label: 'last 7 days',
                    data: Object.values(this.state.sc_arol),
-                   borderColor: ['rgba(95, 206, 255)'],
-                   borderWidth: "5px",
-                   pointRadius: [1],
-                   pointBorderWidth: [1.5],
+                   borderColor: ['rgba(50, 150, 255)'],
+                   borderWidth: [3],
+                   pointRadius: [3],
+                   pointBorderWidth: [2.5],
                    pointBorderColor: ['rgba(255, 255, 255, 0'],
                    backgroundColor: ['rgba(255, 255, 255, 0'],
                },
                {
                    label: 'previous 7 days',
                    data: Object.values(this.state.sc_arop),
-                   borderColor: ['rgba(90, 255, 153, 1)'],
-                   borderWidth: "5px",
-                   pointRadius: [1],
-                   pointBorderWidth: [1.5],
+                   borderColor: ['rgba(74, 212, 103, 1)'],
+                   borderWidth: [3],
+                   pointRadius: [3],
+                   pointBorderWidth: [2.5],
                    pointBorderColor: ['rgba(255, 255, 255, 0'],
                    backgroundColor: ['rgba(255, 255, 255, 0'],
                 }
@@ -314,10 +325,9 @@ div >
     }
     />  <
         div className = "header"
-            style = {{marginTop: "30px"}}
+            style = {{marginTop: [3]}}
      >
-        <
-         > Activity Level < /> < /
+        <h3 > Activity Level < /h3> < /
     div >
 
 <Radar
@@ -329,8 +339,11 @@ div >
             pointRadius: [0],
             scale: {
                 ticks: {
-                    display: false
-                }
+                    display: false,
+                            beginAtZero: true,
+                            max: 1000,
+                            min: 0,
+                },
             }
         }
     }
@@ -341,20 +354,20 @@ div >
            datasets: [{
                    label: 'last 7 days',
                    data: Object.values(this.state.sc_acll),
-                   borderColor: ['rgba(95, 206, 255)'],
-                   borderWidth: "5px",
-                   pointRadius: [1],
-                   pointBorderWidth: [1.5],
+                   borderColor: ['rgba(50, 150, 255)'],
+                   borderWidth: [3],
+                   pointRadius: [3],
+                   pointBorderWidth: [2.5],
                    pointBorderColor: ['rgba(255, 255, 255, 0'],
                    backgroundColor: ['rgba(255, 255, 255, 0'],
                },
                {
                    label: 'previous 7 days',
                    data: Object.values(this.state.sc_aclp),
-                   borderColor: ['rgba(90, 255, 153, 1)'],
-                   borderWidth: "5px",
-                   pointRadius: [1],
-                   pointBorderWidth: [1.5],
+                   borderColor: ['rgba(74, 212, 103, 1)'],
+                   borderWidth: [3],
+                   pointRadius: [3],
+                   pointBorderWidth: [2.5],
                    pointBorderColor: ['rgba(255, 255, 255, 0'],
                    backgroundColor: ['rgba(255, 255, 255, 0'],
                 }
@@ -437,10 +450,9 @@ div >
     }
     /><
         div className = "header"
-            style = {{marginTop: "30px"}}>
-        <
-         > Activity Enjoyableness < /> < /
-    div >
+            style = {{marginTop: [3]}}>
+        <h3 > Activity Enjoyability < /h3>
+         < /    div >
 
 <Radar
     options = {
@@ -451,32 +463,34 @@ div >
             pointRadius: [0],
             scale: {
                 ticks: {
-                    display: false
-                }
+                    display: false,
+                            beginAtZero: true,
+                            max: 1000,
+                            min: 0,
+                },
             }
         }
     }
     data = {
         {
            labels: Object.keys(this.state.sc_acvl),
-
            datasets: [{
                    label: 'last 7 days',
                    data: Object.values(this.state.sc_acvl),
-                   borderColor: ['rgba(95, 206, 255)'],
-                   borderWidth: "5px",
-                   pointRadius: [1],
-                   pointBorderWidth: [1.5],
+                   borderColor: ['rgba(50, 150, 255)'],
+                   borderWidth: [3],
+                   pointRadius: [3],
+                   pointBorderWidth: [2.5],
                    pointBorderColor: ['rgba(255, 255, 255, 0'],
                    backgroundColor: ['rgba(255, 255, 255, 0'],
                },
                {
                    label: 'previous 7 days',
                    data: Object.values(this.state.sc_acvp),
-                   borderColor: ['rgba(90, 255, 153, 1)'],
-                   borderWidth: "5px",
-                   pointRadius: [1],
-                   pointBorderWidth: [1.5],
+                   borderColor: ['rgba(74, 212, 103, 1)'],
+                   borderWidth: [3],
+                   pointRadius: [3],
+                   pointBorderWidth: [2.5],
                    pointBorderColor: ['rgba(255, 255, 255, 0'],
                    backgroundColor: ['rgba(255, 255, 255, 0'],
                 }
