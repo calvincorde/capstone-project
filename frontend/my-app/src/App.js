@@ -10,6 +10,7 @@ import Navigation from './Navigation';
 
 import MainEntry from "./entry/MainEntry"
 import MainSummary from "./summary/MainSummary"
+import user_id from "./Global_vars"
 
 
 

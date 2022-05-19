@@ -9,6 +9,7 @@ edition = "2021"
 chrono = { version = "0.4.19", features = ["serde"] }
 diesel = { version = "1.4.0", features = ["postgres", "r2d2", "chrono", "uuidv07"] }
 diesel_migrations = "1.4.0"
+indexmap = { version = "1.8.1", features = ["serde"] }
 
 # Rocket REST framework
 rocket = "0.4.9"

@@ -1,13 +1,11 @@
 import { Device } from '@capacitor/device';
 
-
 const logDeviceInfo = async () => {
   const info = await Device.getId();
-
-                    localStorage.setItem('item', JSON.stringify(info));}
-
+ localStorage.setItem('item', JSON.stringify(info["uuid"]))
+}
 logDeviceInfo()
-let uniqueId = JSON.parse(localStorage.getItem('item'))["uuid"];
-export const user_id =  uniqueId;
-
 export const backend = "161.35.144.228:3050";
+//export const user_id = JSON.parse(localStorage.getItem('item'));
+export const user_id = "test";
+

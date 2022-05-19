@@ -1,15 +1,17 @@
+import { lazy , Suspense } from "react";
 import './SummaryOverview.css'
 
 import MoodSummary from "./MoodSummary"
 import TagsSummary from "./TagsSummary"
-import JournalSummary from "./JournalSummary"
+import JournalSummary from "./JournalSummary";
+
 
 
 
 export default function SummaryOverview() {
 
   return (
-
+<Suspense fallback={<div>Loading... </div>}>
     <div className="overview-grid">
 
       
@@ -20,6 +22,7 @@ export default function SummaryOverview() {
 
 
     </div>
+</Suspense>
 
   )
 }

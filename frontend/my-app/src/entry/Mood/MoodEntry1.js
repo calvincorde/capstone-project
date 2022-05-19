@@ -4,7 +4,6 @@ import {backend} from "./../../Global_vars";
 import {user_id} from "./../../Global_vars";
 
 import './MoodEntry2.css'
-import { Device } from '@capacitor/device';
 
 export default class MoodEntry1 extends Component {
 

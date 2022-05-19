@@ -4,7 +4,7 @@ use chrono::{Datelike, Duration, NaiveDate, Utc, Weekday};
 // use chrono::format::StrftimeItems;
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
-use std::collections::HashMap;
+use indexmap::IndexMap;
 use std::ops::{Index, IndexMut};
 
 use crate::analysis::summary_page::notes::uid;
@@ -40,25 +40,28 @@ impl IndexMut<&'_ str> for Note {
     }
 }
 
+//struct that takes all data for the summary_overview page
 #[derive(Serialize)]
 pub struct Elo {
-    long_term_trend: HashMap<String, HashMap<NaiveDate, i16>>,
-    short_term_comparison: HashMap<String, HashMap<i8, HashMap<Weekday, i16>>>,
+    #[serde(serialize_with = "indexmap::serde_seq::serialize")]
+    long_term_trend: IndexMap<String, IndexMap<NaiveDate, i16>>,
+    short_term_comparison: IndexMap<String, IndexMap<i8, IndexMap<Weekday, i16>>>,
 }
 
-pub fn long_term_trend(db: &PgConnection, obj_id: String) -> HashMap<String, HashMap<NaiveDate, i16>> {
+pub fn long_term_trend(db: &PgConnection, obj_id: String) -> IndexMap<String, IndexMap<NaiveDate, i16>> {
     //sql query
     let results = notes::table
         .order(timestamp)
         .filter(uid.eq(obj_id))
         .load::<Note>(db)
         .expect("Error loading posts");
-    let mut affect_data: HashMap<String, HashMap<NaiveDate, i16>> = HashMap::new();
+
+    let mut affect_data: IndexMap<String, IndexMap<NaiveDate, i16>> = IndexMap::new();
 
     for affect_dimension in AFFECT_DIMENSIONS {
         let mut week: NaiveDate;
-        let mut dimension_data: HashMap<NaiveDate, i16> = HashMap::new();
-        let mut week_counter: HashMap<NaiveDate, i16> = HashMap::new();
+        let mut dimension_data: IndexMap<NaiveDate, i16> = IndexMap::new();
+        let mut week_counter: IndexMap<NaiveDate, i16> = IndexMap::new();
         //aggregate all results and sum
         for note in &results {
             week = NaiveDate::from_isoywd(note.timestamp.year(),
@@ -88,7 +91,7 @@ pub fn long_term_trend(db: &PgConnection, obj_id: String) -> HashMap<String, Has
 }
 
 
-pub fn short_term_comparison(db: &PgConnection, obj_id: String) -> HashMap<String, HashMap<i8, HashMap<Weekday, i16>>> {
+pub fn short_term_comparison(db: &PgConnection, obj_id: String) -> IndexMap<String, IndexMap<i8, IndexMap<Weekday, i16>>> {
     //sql query
     let this_weeks_values = notes::table
         .order(timestamp)
@@ -100,20 +103,20 @@ pub fn short_term_comparison(db: &PgConnection, obj_id: String) -> HashMap<Strin
     let last_weeks_values = notes::table
         .order(timestamp)
         .filter(timestamp.le(Utc::now().naive_utc() - Duration::days(7)))
-        .filter(timestamp.ge(Utc::now().naive_utc() - Duration::days(14)))
+        .filter(timestamp.ge(Utc::now().naive_utc() - Duration::days(13)))
         .filter(uid.eq(obj_id))
         .load::<Note>(db)
         .expect("Error loading posts");
 
-    let mut affect_data: HashMap<String, HashMap<i8, HashMap<Weekday, i16>>> = HashMap::new();
+    let mut affect_data: IndexMap<String, IndexMap<i8, IndexMap<Weekday, i16>>> = IndexMap::new();
 
 
     for affect_dimension in AFFECT_DIMENSIONS {
-        let mut short_term_dimension_data: HashMap<i8, HashMap<Weekday, i16>> = HashMap::new();
+        let mut short_term_dimension_data: IndexMap<i8, IndexMap<Weekday, i16>> = IndexMap::new();
         let mut day: Weekday;
         let mut count = 0;
         for i in [&this_weeks_values, &last_weeks_values] {
-            let mut dimension_data: HashMap<Weekday, i16> = HashMap::new();
+            let mut dimension_data: IndexMap<Weekday, i16> = IndexMap::new();
             for note in i {
                 day = note.timestamp.weekday();
                 let affect = note[&affect_dimension];

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b503a702-cd70-422f-9a50-c37caa588d2b" name="Changes" comment="test sync">
+    <list default="true" id="b503a702-cd70-422f-9a50-c37caa588d2b" name="Changes" comment="use axios and save in state">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/my-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/analysis/summary_page.rs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/analysis/summary_page.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/my-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/my-app/src/Global_vars.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/Global_vars.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/my-app/src/entry/Mood/MoodEntry1.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/entry/Mood/MoodEntry1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/my-app/src/summary/JournalSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/summary/JournalSummary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mindmee/frontend/my-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mindmee/frontend/my-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mindmee/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mindmee/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/summary/MainSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/summary/MainSummary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/my-app/src/summary/SummaryOverview.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/my-app/src/summary/SummaryOverview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +19,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/mindmee/sandbox/capstone/capstone-project" value="load_all_assets" />
+      </map>
+    </option>
     <option name="RECENT_COMMON_BRANCH" value="main" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -61,17 +67,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="org.rust.hideNoCargoProjectNotifications/home/tobiball/projects/capstone-project/backend/src/analysis/summary_page.rs" value="true" />
-    <property name="org.rust.hideNoCargoProjectNotifications/home/tobiball/projects/capstone-project/backend/src/api/endpoints/commands.rs" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "/home/tobiball/.var/app/com.jetbrains.IntelliJ-IDEA-Community/config/JetBrains/IdeaIC2022.1/scratches",
+    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JavaScript",
+      "JAVA"
+    ]
+  }
+}]]></component>
   <component name="ReadonlyStatusHandler">
     <option name="SHOW_DIALOG" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$APPLICATION_CONFIG_DIR$/scratches" />
+    </key>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
@@ -100,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649443440079</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="use axios and save in state">
+      <created>1652906082638</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652906082638</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,12 +130,13 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="BEK_SORT_TYPE" value="1" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="device_id" />
+                        <option value="load_all_assets" />
                       </list>
                     </value>
                   </entry>
@@ -155,7 +177,8 @@
     <MESSAGE value="mvp_version" />
     <MESSAGE value="implemented single comprehensive long term aggregate api response for summary page" />
     <MESSAGE value="remove proxy from quote of the day" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove proxy from quote of the day" />
+    <MESSAGE value="use axios and save in state" />
+    <option name="LAST_COMMIT_MESSAGE" value="use axios and save in state" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
