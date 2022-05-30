@@ -13,7 +13,7 @@ use crate::diesel_schema::notes::timestamp;
 use crate::models::notes::Note;
 
 const AFFECT_DIMENSIONS: [&str; 4] = ["valence", "arousal", "activity_level", "activity_valence"];
-
+const DISPLAY_FACTOR: i16 = 10;
 
 impl Index<&'_ str> for Note {
     type Output = i16;
@@ -70,11 +70,11 @@ pub fn long_term_trend(db: &PgConnection, obj_id: String) -> IndexMap<String, In
             if !dimension_data.contains_key(&week) {
                 dimension_data.insert(
                     week,
-                    note[&affect_dimension],
+                    note[&affect_dimension] / DISPLAY_FACTOR,
                 );
                 week_counter.insert(week, 1);
             } else {
-                *dimension_data.get_mut(&week).unwrap() += note[&affect_dimension];
+                *dimension_data.get_mut(&week).unwrap() += note[&affect_dimension] / DISPLAY_FACTOR;
                 *week_counter.get_mut(&week).unwrap() += 1;
             }
         }
@@ -121,7 +121,7 @@ pub fn short_term_comparison(db: &PgConnection, obj_id: String) -> IndexMap<Stri
             let mut dimension_data: IndexMap<Weekday, i16> = IndexMap::new();
             for note in i {
                 day = note.timestamp.weekday();
-                let affect = note[&affect_dimension];
+                let affect = note[&affect_dimension]/DISPLAY_FACTOR;
                 dimension_data.insert(
                     day,
                     affect);
