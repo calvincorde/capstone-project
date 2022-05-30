@@ -79,7 +79,7 @@ pub fn long_term_trend(db: &PgConnection, obj_id: String) -> IndexMap<String, In
             }
         }
         for (key, value) in week_counter {
-            *dimension_data.get_mut(&key).unwrap() /= value;
+            *dimension_data.get_mut(&key).unwrap() /= value/DISPLAY_FACTOR;
             // println!(" {}: {}", key, value);
         }
         affect_data.insert(
