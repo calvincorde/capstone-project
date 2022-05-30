@@ -97,6 +97,7 @@ pub fn short_term_comparison(db: &PgConnection, obj_id: String) -> IndexMap<Stri
         .order(timestamp)
         .filter(timestamp.ge(Utc::now().naive_utc() - Duration::days(6)))
         .filter(uid.eq((*obj_id).to_string()))
+        .order(timestamp.desc())
         .load::<Note>(db)
         .expect("Error loading posts");
 
@@ -105,6 +106,7 @@ pub fn short_term_comparison(db: &PgConnection, obj_id: String) -> IndexMap<Stri
         .filter(timestamp.le(Utc::now().naive_utc() - Duration::days(7)))
         .filter(timestamp.ge(Utc::now().naive_utc() - Duration::days(13)))
         .filter(uid.eq(obj_id))
+        .order(timestamp.desc())
         .load::<Note>(db)
         .expect("Error loading posts");
 
