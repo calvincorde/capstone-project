@@ -95,7 +95,7 @@ pub fn short_term_comparison(db: &PgConnection, obj_id: String) -> IndexMap<Stri
     //sql query
     let this_weeks_values = notes::table
         .order(timestamp)
-        .filter(timestamp.ge(Utc::now().naive_utc() - Duration::days(6)))
+        .filter(timestamp.ge(Utc::now().date().and_hms_milli(0, 0, 0, 0).naive_utc() - Duration::days(6)))
         .filter(uid.eq((*obj_id).to_string()))
         .order(timestamp.asc())
         .load::<Note>(db)
@@ -103,8 +103,8 @@ pub fn short_term_comparison(db: &PgConnection, obj_id: String) -> IndexMap<Stri
 
     let last_weeks_values = notes::table
         .order(timestamp)
-        .filter(timestamp.le(Utc::now().naive_utc() - Duration::days(7)))
-        .filter(timestamp.ge(Utc::now().naive_utc() - Duration::days(13)))
+        .filter(timestamp.le(Utc::now().date().and_hms_milli(0, 0, 0, 0).naive_utc() - Duration::days(7)))
+        .filter(timestamp.ge(Utc::now().date().and_hms_milli(0, 0, 0, 0).naive_utc() - Duration::days(13)))
         .filter(uid.eq(obj_id))
         .order(timestamp.asc())
         .load::<Note>(db)
